@@ -17,13 +17,12 @@ public class Mensagem
     }
 
     //Manipulacao de Imagens com Graphics2D
-    public int molde(Graphics2D g, int x, int y, int max){
+    public void molde(Graphics2D g, int x, int y, int max){
         int lin = this.conteudo.length()/max + (this.conteudo.length()%max>0 ? 1 : 0 );
         g.setFont( this.fonte );
-        g.drawRect( x, y, max, (lin + 3)* this.fonte.getSize());
+        g.drawRect( x, y, max * this.fonte.getSize(), (lin + 3) * this.fonte.getSize());
         for(int i=0 ; i < lin ; i++)
             g.drawString(conteudo.substring(i*max, (i*max + max > this.conteudo.length() ? this.conteudo.length() : i*max + max )), x + this.fonte.getSize(), y + i*this.fonte.getSize());
-        return lin;
     }
 
     //Set e Get da Fonte da Mensagem

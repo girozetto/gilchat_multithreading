@@ -17,9 +17,17 @@ public class Registro {
         return this.lista.get(this.lista.size()-1);
     }
 
-    public void desenhar(Graphics2D g)
+    public void desenhar(Graphics2D g, int largura, int altura, String id)
     {
-        
+        int y = 0;
+        for(Mensagem m : this.lista)
+        {
+            int x = m.getIdEmissor().equals(id) ? (largura/2) : 0;
+            int max = (largura/2)/m.getFonte().getSize();
+            int lin = m.getConteudo().length()/max + (m.getConteudo().length()%max>0 ? 1 : 0 );
+            m.molde(g, x, y, max);
+            y += (lin + 3)*m.getFonte().getSize();
+        }
     }
 
     public void adicionar(Mensagem mensagem) {
