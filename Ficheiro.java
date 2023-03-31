@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,14 +9,39 @@ import java.util.Scanner;
 
 public class Ficheiro {
     private File ficheiro;
+
     public Ficheiro(String nome) throws IOException{
-        criarFicheiro(nome);
+        this.ficheiro = criarFicheiro(nome);
     }
 
-    public void criarFicheiro(String nome) throws IOException {
-        File novo = new File(nome);
-        novo.createNewFile();
-        ficheiro = novo;
+    public File criarFicheiro(  String nome ) throws IOException {
+        File novo = new File( nome );
+        if (novo.exists()) 
+            novo.createNewFile();
+        return novo;
+    }
+    
+    public void removerRegisto( String tempFich, String id ) throws Exception
+    {
+        // Leitura do arquivo
+        BufferedReader leitor = new BufferedReader(new FileReader(this.ficheiro));
+
+        File faux = tempFich != null ? new Ficheiro(tempFich).getFicheiro() : new Ficheiro("temporario.txt").getFicheiro();
+        // Escrita do arquivo sem a linha removida
+        BufferedWriter escritor = new BufferedWriter(new FileWriter( faux ));
+        
+        String linha;
+        while(( linha = leitor.readLine()) != null) 
+            if(linha.contains(id)) 
+                escritor.write(linha + "\n");
+
+        // Fechamento dos readers e writers
+        escritor.close();
+        leitor.close();
+
+        // Substituição do arquivo original com o arquivo temporário
+        this.ficheiro.delete();
+        faux.renameTo(this.ficheiro);
     }
 
     public Registro obterRegistros() throws Exception
@@ -28,6 +55,14 @@ public class Ficheiro {
         return reg;
 	}
 
+    public File getFicheiro() {
+        return ficheiro;
+    }
+
+    public void setFicheiro(String ficheiro) throws IOException {
+        this.ficheiro = criarFicheiro(ficheiro);
+    }
+    
 	public void adicionar(Mensagem msg) throws Exception
 	{
 		if(msg==null) return;

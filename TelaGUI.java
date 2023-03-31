@@ -8,6 +8,7 @@ public class TelaGUI extends JFrame{
     public TelaGUI(String nome)
     {
         super(nome);
+        gerarCodigo(5);
     }
     private String gerarCodigo(int n)
     {
