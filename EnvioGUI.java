@@ -1,4 +1,6 @@
+import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -31,7 +33,8 @@ public class EnvioGUI extends JFrame{
         
         JPanel painelInferior = new JPanel();
         JButton botaoEnviar = new JButton();
-        
+        JScrollPane jsp = new JScrollPane(secmsg, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         botaoEnviar.setSize(60, 60);
         botaoEnviar.setIcon(new ImageIcon("recursos/envicon.png"));
         botaoEnviar.addActionListener(new ActionListener(){
@@ -51,12 +54,13 @@ public class EnvioGUI extends JFrame{
         painelInferior.add(botaoEnviar, BorderLayout.EAST);
 
         setLayout(new BorderLayout(0, 1));
-        add(new JScrollPane(secmsg, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
-        add(painelInferior, BorderLayout.SOUTH);
+        add(jsp, BorderLayout.CENTER);
+        add(painelInferior,  BorderLayout.SOUTH);
 
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        pack();
         setVisible(true);
     }
 

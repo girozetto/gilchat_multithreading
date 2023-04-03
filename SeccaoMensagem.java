@@ -1,9 +1,11 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
+public class SeccaoMensagem extends JPanel implements  Actualizacao{
     private Registro registro;
     private String id;
     
@@ -13,11 +15,6 @@ public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
         this.id=id;
         registro = new Registro();
         new EventoLer(ficheiro, this);
-        new Thread(this).start();
-    }
-
-    @Override
-    public void run() {
         this.repaint();
     }
 
@@ -51,14 +48,11 @@ public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
     @Override
     public void receber(Registro msgs) {
         registro.unirRegistro(msgs);
-        new Thread(this).start();
+        this.repaint();
     }
 
     @Override
     public void redimensionar(int addAltura, int addLargura) {
-        setBounds(getBounds().x, getBounds().y, getBounds().width + addLargura, getBounds().height + addAltura);
+        setPreferredSize(new Dimension(getWidth()+addLargura,getHeight()+addAltura));
     }
-
-    
-
 }

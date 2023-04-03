@@ -35,12 +35,12 @@ public class Registro {
         int margemBaixo = 1;
         for(Mensagem m : this.lista)
         {
-            if(y > altura) act.redimensionar(y-altura, 0);
             int x = m.getIdEmissor().equals(id) ? (largura/2) : 0;
             int max = (largura/2)/g.getFontMetrics(m.getFonte()).charWidth('W');
             int lin = m.getConteudo().length()/max + (m.getConteudo().length()%max>0 ? 1 : 0 );
             m.molde(g, x, y, max);
             y += (lin + 3)*m.getFonte().getSize()+margemBaixo;
+            if(y > altura) act.redimensionar(y-altura, 0);
         }
     }
 
