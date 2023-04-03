@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Registro {
+    
     private List<Mensagem> lista;
 
     public Registro() {
@@ -43,5 +44,13 @@ public class Registro {
 
     public void adicionar(Mensagem mensagem) {
         this.lista.add(mensagem);
+    }
+
+    @Override
+    public String toString() {
+        String str="Lista de Mensagens\n";
+        for(Mensagem m: this.lista)
+            str += m.toString() + "\n";
+        return str;
     }
 }

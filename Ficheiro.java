@@ -18,7 +18,7 @@ public class Ficheiro {
 
     public boolean mudancaFicheiro()
     {
-        if(estado == this.ficheiro.length()){
+        if(estado != this.ficheiro.length()){
             estado = this.ficheiro.length();
             return true;
         }
@@ -27,7 +27,7 @@ public class Ficheiro {
 
     public File criarFicheiro(  String nome ) throws IOException {
         File novo = new File( nome );
-        if (novo.exists()) 
+        if (!novo.exists()) 
             novo.createNewFile();
         return novo;
     }

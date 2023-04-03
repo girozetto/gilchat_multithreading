@@ -1,9 +1,10 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Mensagem
 {
-    final private int FONT_SIZE = 2;  
+    final private int FONT_SIZE = 20;  
     private String idEmissor;
     private String conteudo;
     private Font fonte;
@@ -19,10 +20,15 @@ public class Mensagem
     //Manipulacao de Imagens com Graphics2D
     public void molde(Graphics2D g, int x, int y, int max){
         int lin = this.conteudo.length()/max + (this.conteudo.length()%max>0 ? 1 : 0 );
+        
+        
+        g.setColor(new Color(0xFF2C455A));
+        g.fillRect( x, y, max , (lin + 3));
+        
         g.setFont( this.fonte );
-        g.drawRect( x, y, max * this.fonte.getSize(), (lin + 3) * this.fonte.getSize());
+        g.setColor(new Color(0xFFFFFFFF));
         for(int i=0 ; i < lin ; i++)
-            g.drawString(conteudo.substring(i*max, (i*max + max > this.conteudo.length() ? this.conteudo.length() : i*max + max )), x + this.fonte.getSize(), y + i*this.fonte.getSize());
+            g.drawString(conteudo.substring(i*max, (i*max + max > this.conteudo.length() ? this.conteudo.length() : i*max + max )), x , y + i);
     }
 
     //Set e Get da Fonte da Mensagem
@@ -48,5 +54,10 @@ public class Mensagem
     }
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
+    }
+
+    @Override
+    public String toString() {
+        return "Mensagem [idEmissor=" + idEmissor + ", conteudo=" + conteudo + "]";
     }
 }

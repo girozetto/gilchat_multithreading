@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        setBackground(new Color(0xFF1E1E1E));
         Graphics2D g2d = (Graphics2D) g;
         this.registro.desenhar(g2d,this.getBounds().width,this.getBounds().height, this.id);
     }
@@ -47,6 +49,7 @@ public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
 
     @Override
     public void receber(Registro msgs) {
+        System.out.println(msgs.toString());
         registro.unirRegistro(msgs);
         new Thread(this).start();
     }
