@@ -1,16 +1,13 @@
-import javax.swing.JFrame;
-
-public class TelaGUI extends JFrame{
+public class TelaGUI{
+    final private static int MAX = 8;
     public static void main(String[] args)
     {
-
+        EnvioGUI tela1 = new EnvioGUI(gerarCodigo(MAX));
+        EnvioGUI tela2 = new EnvioGUI(gerarCodigo(MAX));
+        tela1.setVisible(true);
+        tela2.setVisible(true);
     }
-    public TelaGUI(String nome)
-    {
-        super(nome);
-        gerarCodigo(5);
-    }
-    private String gerarCodigo(int n)
+    private static String gerarCodigo(int n)
     {
         String alfnum = "abcdefghijklmnopqrstuvwxyz0123456789";
         String cod="";

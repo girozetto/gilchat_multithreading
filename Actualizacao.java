@@ -1,3 +1,3 @@
 public interface Actualizacao {
-    void receber(Mensagem msg);
+    void receber(Registro msgs);
 }

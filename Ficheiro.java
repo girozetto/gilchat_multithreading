@@ -9,9 +9,20 @@ import java.util.Scanner;
 
 public class Ficheiro {
     private File ficheiro;
+    private long estado;
 
     public Ficheiro(String nome) throws IOException{
         this.ficheiro = criarFicheiro(nome);
+        this.estado = 0;
+    }
+
+    public boolean mudancaFicheiro()
+    {
+        if(estado == this.ficheiro.length()){
+            estado = this.ficheiro.length();
+            return true;
+        }
+        return false;
     }
 
     public File criarFicheiro(  String nome ) throws IOException {
@@ -44,7 +55,7 @@ public class Ficheiro {
         faux.renameTo(this.ficheiro);
     }
 
-    public Registro obterRegistros() throws Exception
+    public Registro obterRegistros() throws IOException
 	{
         Registro reg = new Registro();
 		Scanner ler = new Scanner(new FileReader(ficheiro));
@@ -63,10 +74,8 @@ public class Ficheiro {
         this.ficheiro = criarFicheiro(ficheiro);
     }
     
-	public void adicionar(Mensagem msg) throws Exception
+	public void adicionar(Mensagem msg) throws IOException
 	{
-		if(msg==null) return;
-        
 		PrintWriter arq = new PrintWriter(new FileWriter(ficheiro,true));
         arq.printf("%s %s%n",msg.getIdEmissor(),msg.getConteudo().replaceAll(" ", "-"));
         arq.close();

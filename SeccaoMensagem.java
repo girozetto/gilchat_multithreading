@@ -1,30 +1,23 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
     private Registro registro;
     private String id;
     
-    public SeccaoMensagem(String id)
+    public SeccaoMensagem(String id, Ficheiro ficheiro)
     {
+        super();
         this.id=id;
         registro = new Registro();
+        new EventoLer(ficheiro, this);
         new Thread(this).start();
-    }
-
-    private boolean rodarFrames()
-    {
-        this.repaint();
-        try {Thread.sleep(1000/24);} catch (InterruptedException e) {JOptionPane.showMessageDialog(this.getParent(), "Houve um erro de interrupção da Thread");}
-        return true;
     }
 
     @Override
     public void run() {
-        while(rodarFrames());
+        this.repaint();
     }
 
     @Override
@@ -53,7 +46,11 @@ public class SeccaoMensagem extends JPanel implements Runnable, Actualizacao{
     }
 
     @Override
-    public void receber(Mensagem msg) {
-        registro.adicionar(msg);
+    public void receber(Registro msgs) {
+        registro.unirRegistro(msgs);
+        new Thread(this).start();
     }
+
+    
+
 }

@@ -4,12 +4,23 @@ import java.util.List;
 
 public class Registro {
     private List<Mensagem> lista;
+
     public Registro() {
         this.lista = new ArrayList<>();
     }
 
     public void setLista(List<Mensagem> lista) {
         this.lista=lista;
+    }
+
+    public List<Mensagem> getLista() {
+        return lista;
+    }
+
+    public void unirRegistro(Registro r)
+    {
+        for(int i = getLista().size() ; i < r.getLista().size() ; i++)
+            adicionar(r.getLista().get(i));
     }
 
     public Mensagem obterUltima()
