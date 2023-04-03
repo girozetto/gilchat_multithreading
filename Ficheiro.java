@@ -27,8 +27,9 @@ public class Ficheiro {
 
     public File criarFicheiro(  String nome ) throws IOException {
         File novo = new File( nome );
-        if (!novo.exists()) 
-            novo.createNewFile();
+        if (novo.exists()) 
+            novo.delete();
+        novo.createNewFile();
         return novo;
     }
     

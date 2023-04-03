@@ -2,12 +2,16 @@ public class TelaGUI{
     final private static int MAX = 8;
     public static void main(String[] args)
     {
-        EnvioGUI tela1 = new EnvioGUI(gerarCodigo(MAX));
-        tela1.setSize(400,600);
-        EnvioGUI tela2 = new EnvioGUI(gerarCodigo(MAX));
-        tela2.setSize(400,600);
-        tela1.setVisible(true);
-        tela2.setVisible(true);
+        mostrar(2);
+    }
+    private static void mostrar(int n)
+    {
+        for( int i = 0 ; i<n ; i++ )
+        {
+            EnvioGUI tela = new EnvioGUI(gerarCodigo(MAX));
+            tela.setSize(400,600);
+            tela.setVisible(true);
+        }
     }
     private static String gerarCodigo(int n)
     {

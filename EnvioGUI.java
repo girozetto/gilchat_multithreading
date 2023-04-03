@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class EnvioGUI extends JFrame{
     final public String F_BACKUP = "backchat.txt";
@@ -17,7 +17,7 @@ public class EnvioGUI extends JFrame{
 
     private String id;
     private SeccaoMensagem secmsg;
-    private JTextArea caixamsg;
+    private JTextField caixamsg;
     private Ficheiro backup;
 
     public EnvioGUI(String id)
@@ -26,7 +26,7 @@ public class EnvioGUI extends JFrame{
         gerarFicheiros();
         this.id = id;
         secmsg = new SeccaoMensagem(id, this.backup);
-        caixamsg = new JTextArea();
+        caixamsg = new JTextField();
 
         
         JPanel painelInferior = new JPanel();
@@ -46,13 +46,12 @@ public class EnvioGUI extends JFrame{
         });
 
 
-        painelInferior.setLayout(new BorderLayout(1,4));
+        painelInferior.setLayout(new BorderLayout(0,1));
         painelInferior.add(caixamsg, BorderLayout.CENTER);
         painelInferior.add(botaoEnviar, BorderLayout.EAST);
-        painelInferior.setSize(getWidth(),(int) (getHeight()*0.1));
 
         setLayout(new BorderLayout(0, 1));
-        add(new JScrollPane(secmsg), BorderLayout.CENTER);
+        add(new JScrollPane(secmsg, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
         add(painelInferior, BorderLayout.SOUTH);
 
         setResizable(false);
