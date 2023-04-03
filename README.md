@@ -28,7 +28,7 @@ Just compile all .java files
 
 And then
 
-Execute 
+Execute TelaGUI.java
 
 ## Usage <a name = "usage"></a>
 
