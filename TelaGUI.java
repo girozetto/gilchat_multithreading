@@ -1,14 +1,15 @@
 public class TelaGUI{
-    final private static int MAX = 8;
+    final private static int MAXCHAR = 8;
+	final private static int QUANTIDADE_TELA = 2;
     public static void main(String[] args)
     {
-        mostrar(2);
+        mostrar(QUANTIDADE_TELA);
     }
     private static void mostrar(int n)
     {
         for( int i = 0 ; i<n ; i++ )
         {
-            EnvioGUI tela = new EnvioGUI(gerarCodigo(MAX));
+            EnvioGUI tela = new EnvioGUI(gerarCodigo(MAXCHAR));
             tela.setSize(400,600);
             tela.setVisible(true);
         }

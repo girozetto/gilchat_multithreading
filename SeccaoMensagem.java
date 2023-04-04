@@ -2,9 +2,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-public class SeccaoMensagem extends JPanel implements  Actualizacao{
+public class SeccaoMensagem extends JTextArea implements  Actualizacao{
     private Registro registro;
     private String id;
     
@@ -53,5 +53,6 @@ public class SeccaoMensagem extends JPanel implements  Actualizacao{
     @Override
     public void redimensionar(int addAltura, int addLargura) {
         setPreferredSize(new Dimension(getWidth()+addLargura,getHeight()+addAltura));
+        setText("escrevendo");
     }
 }
